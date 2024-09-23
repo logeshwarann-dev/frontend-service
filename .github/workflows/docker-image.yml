@@ -22,7 +22,7 @@ jobs:
 
       - name: Get the timestamp for tagging
         id: get_time
-        run: echo "TAG=$(date +%s)" >> $GITHUB_ENV
+        run: echo "TAG=$(date +%4N)" >> $GITHUB_ENV
       -
         name: Build and push
         uses: docker/build-push-action@v6
