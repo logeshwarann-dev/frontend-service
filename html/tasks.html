@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager - Tasks</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/tasks">Tasks</a></li>
+            <li><a href="/logout">Logout</a></li>
+            
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Manage Your Tasks</h2>
+        <form action="/tasks/add" method="POST" hx-post="/tasks/add" hx-target="#tasks-list" hx-swap="beforeend">
+            <label for="title">New Task:</label>
+            <input type="text" id="title" name="title" required>
+            <button type="submit" class="btn">Add Task</button>
+        </form>
+
+        <h3>Your Tasks</h3>
+        <ul id="tasks-list">
+            {{if .Tasks}}
+                {{range .Tasks}}
+                <li id="task-{{.TaskID}}">
+                    <form action="/tasks/update" method="POST" hx-post="/tasks/update" hx-target="#task-{{.TaskID}}">
+                        <input type="hidden" name="task_id" value="{{.TaskID}}">
+                        <input type="text" name="title" value="{{.Title}}" class="{{if .Done}}completed{{end}}">
+                        <input type="checkbox" name="done" {{if .Done}}checked{{end}}> Done
+                        <button type="submit" class="btn-small">Update</button>
+                    </form>
+                    <button hx-delete="/tasks/delete/{{.TaskID}}" hx-target="#task-{{.TaskID}}" class="btn-small delete">Delete</button>
+                </li>
+                {{end}}
+            {{else}}
+                <li>No tasks available. Create your first task!</li>
+            {{end}}
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager - Home</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/tasks">Tasks</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Welcome to the BITS Task Manager App</h1>
+        <p>This application lets you add, update, and delete tasks.</p>
+        <a href="/login" class="btn">Get Started!</a>
+        
+        <!-- Registration Form -->
+        <div class="register-section">
+            <h2>New to our App? Create an Account</h2>
+            <form action="/register" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                
+                <button type="submit" class="btn">Register</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
